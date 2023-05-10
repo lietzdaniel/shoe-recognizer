@@ -1,0 +1,5 @@
+beautifulsoup4==4.11.1
+beautifulsoup4==4.10.0
+fastai==2.7.12
+jmd_imagescraper==1.0.2
+Requests==2.30.0
