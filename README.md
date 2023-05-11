@@ -30,18 +30,17 @@ As a sneaker enthusiast, it sometimes happens that you stumble upon a sneaker th
 
 ## Design Document & Pipeline
 
-Before starting any programming, I wrote down my thoughts of how I was going to approach this in a Design Document. This defined a clear goal for me, and I thought about technologies I could use. 
+Before starting any programming, a design document was created. This defined a clear goal for me, and I could think about technologies I could use. 
 <img src="https://i.imgur.com/kfe3MW2.png" width="420" height="600" />
 
 
-
-To make it easier for me to follow, I also created a flow chart visualizing the steps that had to be done. ![flowchart](https://i.imgur.com/xwe1jUb.png)
+To simplify the process, a flowchart was also created according to the design document. ![flowchart](https://i.imgur.com/xwe1jUb.png)
 
 Eventhough I didn't do everything exactly as stated in the plans, setting up a flowchart and design document helped a lot in the development of the project. I didn't only have the final goal in mind, but always knew what my next sub-goal is and what I need to do in order to advance with the development.
 
 ## Creating a shoe database
 
-The first step that had to be done is deciding on what shoes the model should be able to recognize. My first idea was to just to find every possible shoe model, including every possible color and variant it released with, and write it into a `.csv` database. After doing some research, I found a Sneaker Database in the Website [Sole Collector](https://solecollector.com/sd/sole-search-sneaker-database/). It had sneakers from nine of the most popular footwear brands (`[Nike, Adidas, New Balance, Asics, Converse, Vans, Jordan, Puma, Reebok]`), every model these brands released, and every variant of these models ever released. Using the backend API of this website, I scraped every entry in the database and saved it locally. The amount of shoes was over 4000. These were a lot of entries, and I decided to go a step back and ignore the different variants, only differentiating between models, reducing the amount of sneakers in my database to roughly 1200.
+The first step that had to be done is deciding on what shoes the model should be able to recognize. My first idea was to just to find every possible shoe model, including every possible color and variant it released with, and write it into a `.csv` database. After doing some research, I found a Sneaker Database in the Website [Sole Collector](https://solecollector.com/sd/sole-search-sneaker-database/). It had sneakers from nine of the most popular footwear brands (`[Nike, Adidas, New Balance, Asics, Converse, Vans, Jordan, Puma, Reebok]`), every model these brands released, and every variant of these models ever released. By figuring out the structure backend API of this website and requesting information for it, I scraped every entry of the database and saved it locally in 'allShoes.csv'. The amount of shoes was over 4000. These were a lot of entries, and I decided to go a step back and ignore the different variants, only differentiating between models, reducing the amount of sneakers in my database to roughly 1200.
 <img src="https://i.imgur.com/R0y7lmu.png" width="420" height="420" />
 
 ## Image Scraping
@@ -74,7 +73,7 @@ The first training run was done with 50 images per normal and 100 images per pop
 To fix this, I increased the threshhold for possible rotation during the training to 90 degrees with `aug_transforms(max_rotate=90.0)`. Also, I increased the image amount to 200 for normal shoes, and 1000 for popular shoes. In the end, the accuracy for rotated image has improved, but the accuracy for non rotated has 
 
 ## Connection to frontend
-The code for the frontend can be found [here](https://github.com/lietzdaniel/streamlit-shoe-recognizer). The model that was trained on is uploaded in the repo. The model is loaded in the StreamLit app, and  `predict()` is invoked on the image uploaded, with the results being printed on the dashboard. 
+The code for the frontend can be found [here](https://github.com/lietzdaniel/streamlit-shoe-recognizer). The model that was trained on is uploaded in the repo. The model is loaded in the StreamLit app, and the prediction is done on the image uploaded, with the results being printed on the dashboard. 
 
 ## Final thoughts and further ideas
 All in all, while the most recent model can identify some sneakers in some positions okay-ish, the sheer amount of sneakers in the world make it hard to train a machine learning model accurately identifying them. The rarer a colorway or a model of a shoe is, the harder it is to find many distinct pictures of it in order to properly train a Machine Learning model on it. That said, there are some optimizations and approaches that still can be tried out in order to more accurately predict the sneaker:
